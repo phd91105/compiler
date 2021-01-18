@@ -218,7 +218,7 @@ func main() {
 				Tty:             false,
 			}, &container.HostConfig{
 				Mounts: []mount.Mount{
-					mount.Mount{
+					{
 						Type:   mount.TypeBind,
 						Source: "/tmp/compiler/" + runningHash,
 						Target: "/workspace",
