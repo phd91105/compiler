@@ -149,7 +149,7 @@ func main() {
 				glog.Warningf("language is empty")
 				return
 			}
-			if query.Language == "" {
+			if query.Code == "" {
 				w.WriteHeader(http.StatusBadRequest)
 				w.Write([]byte("code is empty"))
 				glog.Warningf("code is empty")

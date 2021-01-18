@@ -9,6 +9,7 @@ require (
 	github.com/docker/go-connections v0.4.0 // indirect
 	github.com/docker/go-units v0.4.0
 	github.com/gin-gonic/gin v1.5.0
+	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/opencontainers/go-digest v1.0.0-rc1 // indirect
 	github.com/philhofer/fwd v1.0.0 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
