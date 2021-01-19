@@ -28,18 +28,18 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-type Build struct {
+type build struct {
 	Code     string `form:"code"`
 	Language string `form:"language"`
 }
 
-type Run struct {
+type run struct {
 	Code     string `form:"code"`
 	Language string `form:"language"`
 	Stdin    string `form:"stdin"`
 }
 
-type Language struct {
+type language struct {
 	Name        string   `yaml:"name"`
 	DockerImage string   `yaml:"docker_image"`
 	BuildCmd    []string `yaml:"build_cmd"`
@@ -47,8 +47,8 @@ type Language struct {
 	CodeFile    string   `yaml:"code_file"`
 }
 
-type Languages struct {
-	Language map[string]Language `yaml:"language"`
+type languages struct {
+	Language map[string]language `yaml:"language"`
 }
 
 func main() {
@@ -61,12 +61,12 @@ func main() {
 	defer tracer.Stop()
 	ctx := context.Background()
 
-	// Read languges setttings
+	// Read languges settings
 	buf, err := ioutil.ReadFile("./languages.yaml")
 	if err != nil {
 		glog.Errorf("Cannot read languages file: %s", err.Error())
 	}
-	var lang Languages
+	var lang languages
 	err = yaml.Unmarshal(buf, &lang)
 	if err != nil {
 		glog.Errorf("Cannot parse languages file: %s", err.Error())
@@ -137,7 +137,7 @@ func main() {
 	})
 	r.POST("/run", gin.WrapF(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
-		var query Run
+		var query run
 		bufbody := new(bytes.Buffer)
 		bufbody.ReadFrom(r.Body)
 		body := bufbody.Bytes()
